@@ -64,7 +64,7 @@ public class Projet {
      */
     public double calculAbattement(){
         if (this.prixHabitation < 350_000) return 40_000;
-        if (this.prixHabitation > 500_000) return 20_000;
+        if (this.prixHabitation >= 500_000) return 20_000;
         return 40_000 - (20_000 * (this.prixHabitation - 350_000) / (500_000 - 350_000));
     }
 
