@@ -50,7 +50,7 @@ public class Projet {
      * Calcule le montant du droit d'enregistrement.
      * @return double droit d'enregistrement
      */
-    private double calculDroitEnregistrement(){
+    public double calculDroitEnregistrement(){
         float taux = 0.125f;
         if (this.revenuCadastral <= 745){
              taux = 0.06f;  
@@ -62,7 +62,7 @@ public class Projet {
      * Calcule l'abattement fiscal possible. 
      * @return double abattement
      */
-    private double calculAbattement(){
+    public double calculAbattement(){
         if (this.prixHabitation < 350_000) return 40_000;
         if (this.prixHabitation > 500_000) return 20_000;
         return 40_000 - (20_000 * (this.prixHabitation - 350_000) / (500_000 - 350_000));
@@ -72,7 +72,7 @@ public class Projet {
      * Calcule la tva sur les frais de transformation
      * @return doube TVA
      */
-    private double calculTVAFraisTransformation(){
+    public double calculTVAFraisTransformation(){
         return 0.06 * this.fraisTransformation;
     }
 
