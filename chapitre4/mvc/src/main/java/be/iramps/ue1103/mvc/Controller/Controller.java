@@ -1,11 +1,8 @@
 package be.iramps.ue1103.mvc.Controller;
 
 import java.beans.PropertyChangeListener;
-import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import be.iramps.ue1103.mvc.Model.IModel;
@@ -13,7 +10,6 @@ import be.iramps.ue1103.mvc.Model.PrimaryModel;
 import be.iramps.ue1103.mvc.View.IView;
 import be.iramps.ue1103.mvc.View.PrimaryView;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -51,7 +47,9 @@ public class Controller {
         return new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
-                function.accept(params.get());;
+                if (arg0.getClickCount() == 2 ){
+                    function.accept(params.get());
+                }
             }
             
         };
