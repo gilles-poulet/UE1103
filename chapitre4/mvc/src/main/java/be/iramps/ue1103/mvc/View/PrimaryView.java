@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Supplier;
@@ -53,14 +51,7 @@ public class PrimaryView extends Application implements PropertyChangeListener, 
     public void start(Stage stage) throws IOException {
         PrimaryView.stage = stage;
         // Préparation du stage pour gérer la fermeture du programme.
-        PrimaryView.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                stopApp();
-                Platform.exit();
-                System.exit(0);
-            }
-        });
+        PrimaryView.stage.setOnCloseRequest(this.control.generateCloseEvent());
 
         // Préparation de la première fenêtre
         showPrincipalWindow();
@@ -96,8 +87,8 @@ public class PrimaryView extends Application implements PropertyChangeListener, 
     }
 
     @Override
-    public void stopApp() {
-        this.control.stop();
+    public void stopApp() {        
+        Platform.exit();
     }
 
     public void showAllSections(ArrayList<String> listeSection){
@@ -126,12 +117,14 @@ public class PrimaryView extends Application implements PropertyChangeListener, 
         Label nomTexte = new Label("Nom: ");
         Label idL = new Label(id);
         TextField nomT = new TextField(nom);
+        
+        Supplier<String[]> supplier = () -> new String[] {id, nomT.getText()};
+        sauver.setOnAction(control.generateEventHandlerAction(
+                "update-section",supplier
+                ));
 
-        Supplier<String[]> supplier = () -> new String[] {""};
-        afficher.setOnAction(control.generateEventHandlerAction("show-sections", supplier ));
-       
-        supplier = () -> new String[] {id, nomT.getText()};
-        sauver.setOnAction(control.generateEventHandlerAction("update-section",supplier));
+        supplier = () -> new String[] {""};
+        afficher.setOnAction(control.generateEventHandlerAction("show-sections", supplier ));      
         
         supplier = () -> new String[] {id};
         supprimer.setOnAction(control.generateEventHandlerAction("delete-section", supplier));

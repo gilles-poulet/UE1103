@@ -12,6 +12,7 @@ import be.iramps.ue1103.mvc.View.PrimaryView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.WindowEvent;
 
 public class Controller {
     private IModel model;
@@ -52,6 +53,16 @@ public class Controller {
                 }
             }
             
+        };
+    }
+
+    public EventHandler<WindowEvent> generateCloseEvent(){
+        return new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                stop();
+                System.exit(0);
+            }
         };
     }
 
@@ -111,6 +122,7 @@ public class Controller {
     }
 
     public void stop(){
-        model.close();
+        this.model.close();        
+        this.view.stopApp();
     }
 }

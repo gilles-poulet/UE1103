@@ -1,0 +1,4 @@
+--patch-module
+be.iramps.ue1103.mvc=_
+--add-reads
+be.iramps.ue1103.mvc=ALL-UNNAMED
