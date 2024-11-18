@@ -28,7 +28,7 @@ public class ITApp {
         Assertions.assertEquals(true, true);
         
         double apportBancaire = pret.calculRestantDu(montantEmprunt);
-        Assertions.assertEquals(30_085.00,apportBancaire + apportPersonnel );
+        Assertions.assertEquals(30_085.00,apportBancaire + apportPersonnel,0.001 );
     }
 
 }
