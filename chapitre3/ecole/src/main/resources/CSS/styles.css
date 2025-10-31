@@ -1,0 +1,32 @@
+/* Styling général */
+HBox,
+VBox,
+.table-view {
+    -fx-background-color: orange;
+    ;
+}
+
+.label,
+.button {
+    -fx-font-size: 18px;
+}
+
+/* Styling du menu */
+#menu,
+#menu HBox {
+    -fx-background-color: rgb(3, 184, 255);
+}
+
+/* Sytling de l'édition du profil */
+#edit-profile .image-view:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 15, 0, 0, 0);
+}
+
+/* Styling du hover */
+
+#menu HBox:hover,
+.button:hover,
+#edit-profile .label:hover,
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: rgb(255, 206, 116);
+}
