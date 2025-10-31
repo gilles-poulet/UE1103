@@ -1,8 +1,8 @@
 package be.iramps.ue1103;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Collections;
 
 import be.iramps.ue1103.BL.Cours;
